@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@color/fragmentContainerBackground">
+
+    <TextView
+        android:id="@+id/playerName"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:hint="Player name"
+        android:textColor="@color/textColor2"
+        android:textColorHint="@color/textColor2"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/playerScore"
+        android:textColor="@color/textColor2"
+        android:textColorHint="@color/textColor2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wins"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/playerName"
+        android:layout_alignBottom="@+id/playerName"
+        android:layout_toEndOf="@+id/playerName"/>
+
+</RelativeLayout>
