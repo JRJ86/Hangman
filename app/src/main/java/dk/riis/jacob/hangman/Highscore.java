@@ -1,9 +1,12 @@
 package dk.riis.jacob.hangman;
 
+import android.widget.ImageView;
+
 public class Highscore {
 
     private String name;
     private int score;
+    private ImageView pic;
 
     public Highscore(String name) {
         this.name = name;
@@ -12,6 +15,12 @@ public class Highscore {
     public Highscore(String name, int score) {
         this.name = name;
         this.score = score;
+    }
+
+    public Highscore(String name, int score, ImageView pic) {
+        this.name = name;
+        this.score = score;
+        this.pic = pic;
     }
 
     public String getName() {

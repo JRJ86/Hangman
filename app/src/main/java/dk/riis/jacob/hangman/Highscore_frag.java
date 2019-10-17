@@ -17,11 +17,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class Highscore_frag extends Fragment {
+public class Highscore_frag extends Fragment implements View.OnClickListener{
 
     Galgelogik galgelogik = new Galgelogik();
 
     private ArrayList<Highscore> highscores = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,10 +38,17 @@ public class Highscore_frag extends Fragment {
 //            System.out.println("1: "+player+" 2: "+score);
 //        }
 
+        inputHighscores();
+
         HighscoreListAdapter adapter = new HighscoreListAdapter(this.getActivity(), R.layout.higscore_element, highscores);
         listView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     /**

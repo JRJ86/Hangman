@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,9 +48,11 @@ public class HighscoreListAdapter extends ArrayAdapter<Highscore>{
 
         TextView players = (TextView)convertView.findViewById(R.id.playerName);
         TextView scores = (TextView)convertView.findViewById(R.id.playerScore);
+//        ImageView pic = convertView.findViewById(R.id.itemImage);
 
         players.setText(name);
         scores.setText(realScore);
+//        pic.setImageResource(R.drawable.noose);
 
         return convertView;
 
