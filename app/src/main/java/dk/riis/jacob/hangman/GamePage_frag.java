@@ -100,6 +100,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         LooseScreen_frag looseScreen_frag;
         InputName_frag inputName_frag;
         FirstPage_frag firstPage_frag;
+        win = 0;
         Highscore_frag highscore_frag;
         Bundle bundle, bundle2, bundle3;
         String letter = input.getText().toString();
@@ -132,13 +133,15 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     info.setText("You escaped the noose!");
                     winScreen_frag = new WinScreen_frag();
                     highscore_frag = new Highscore_frag();
+                    win = 1;
+                    String winningPlayer = word;
 
                     bundle = new Bundle();
                     bundle.putInt("tries",tries);
                     winScreen_frag.setArguments(bundle);
 
 //                    bundle2 = new Bundle();
-//                    bundle2.putString("player", player);
+//                    bundle2.putString("player", winningPlayer);
 //                    bundle2.putInt("win",win);
 //                    highscore_frag.setArguments(bundle2);
 
@@ -147,8 +150,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     fragmentTransaction.replace(R.id.fragContainer,winScreen_frag);
                     fragmentTransaction.commit();
                     GamePage_frag.galgelogik.nulstil();
-
-
 
                 }
                 if (galgelogik.erSpilletTabt()) {

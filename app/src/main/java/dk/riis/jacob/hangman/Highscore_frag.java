@@ -19,15 +19,9 @@ import java.util.ArrayList;
 
 public class Highscore_frag extends Fragment {
 
-//    private ListView highscoreList;
-//    private ArrayAdapter<String> playerNameList;
-//    private ArrayAdapter playerScoreList;
-//    private ArrayList<String> players;
-//    private ArrayList winScore;
-//    private TextView playerName, playerScore;
+    Galgelogik galgelogik = new Galgelogik();
 
-    private ArrayList<Highscore> highscores;
-
+    private ArrayList<Highscore> highscores = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +30,23 @@ public class Highscore_frag extends Fragment {
 
         ListView listView = view.findViewById(R.id.listView);
 
+//        if (galgelogik.erSpilletVundet()){
+//            Bundle bundle = getArguments();
+//            String player = bundle.getString("player");
+//            int score = bundle.getInt("win");
+//            System.out.println("1: "+player+" 2: "+score);
+//        }
+
+        HighscoreListAdapter adapter = new HighscoreListAdapter(this.getActivity(), R.layout.higscore_element, highscores);
+        listView.setAdapter(adapter);
+
+        return view;
+    }
+
+    /**
+     * This method inputs som fake highscores into the Highscorelist
+     */
+    public void inputHighscores(){
         Highscore one = new Highscore("Valdemar", 10);
         Highscore two = new Highscore("Jacob", 20);
         Highscore three = new Highscore("Nick", 15);
@@ -52,8 +63,6 @@ public class Highscore_frag extends Fragment {
         Highscore fourteen = new Highscore("Jørgen", 17);
         Highscore fifteen = new Highscore("Svend", 4);
         Highscore sixteen = new Highscore("Mogens", 8);
-
-        highscores = new ArrayList<>();
         highscores.add(one);
         highscores.add(two);
         highscores.add(three);
@@ -70,11 +79,6 @@ public class Highscore_frag extends Fragment {
         highscores.add(fourteen);
         highscores.add(fifteen);
         highscores.add(sixteen);
-
-        HighscoreListAdapter adapter = new HighscoreListAdapter(getActivity(), R.layout.higscore_element, highscores);
-        listView.setAdapter(adapter);
-
-        return view;
     }
 
 }

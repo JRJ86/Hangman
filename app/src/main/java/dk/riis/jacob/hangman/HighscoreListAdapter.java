@@ -20,20 +20,13 @@ public class HighscoreListAdapter extends ArrayAdapter<Highscore>{
 
     private static final String TAG = "HighscoreListAdapter";
 
-    private Context context;
-    private int resource;
+    private Context mContext;
+    private int mResource;
 
-    /**
-     * Default constructor for the HighscoreListAdapter
-     *
-     * @param context  The activity / fragment.
-     * @param resource The the resource used. In this case the layout.
-     * @param objects The list of names and scores.
-     */
     public HighscoreListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Highscore> objects) {
         super(context, resource, objects);
-        this.context = context;
-        this.resource = resource;
+        mContext = context;
+        mResource = resource;
     }
 
     @NonNull
@@ -44,14 +37,19 @@ public class HighscoreListAdapter extends ArrayAdapter<Highscore>{
         String name = getItem(position).getName();
         int score = getItem(position).getScore();
 
+        String realScore = Integer.toString(score);
+
         // The Highscore object with the information
         Highscore highscore = new Highscore(name,score);
 
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        convertView = layoutInflater.inflate(resource, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        convertView = layoutInflater.inflate(mResource, parent, false);
 
         TextView players = (TextView)convertView.findViewById(R.id.playerName);
         TextView scores = (TextView)convertView.findViewById(R.id.playerScore);
+
+        players.setText(name);
+        scores.setText(realScore);
 
         return convertView;
 
