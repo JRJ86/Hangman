@@ -1,7 +1,9 @@
 package dk.riis.jacob.hangman;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,14 +31,11 @@ public class Highscore_frag extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_highscore_frag, container, false);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        String highscoreList = sharedPreferences.getString("playerName",)
+
         ListView listView = view.findViewById(R.id.listView);
 
-//        if (galgelogik.erSpilletVundet()){
-//            Bundle bundle = getArguments();
-//            String player = bundle.getString("player");
-//            int score = bundle.getInt("win");
-//            System.out.println("1: "+player+" 2: "+score);
-//        }
 
         inputHighscores();
 

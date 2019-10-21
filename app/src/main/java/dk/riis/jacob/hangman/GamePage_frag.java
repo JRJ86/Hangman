@@ -1,7 +1,9 @@
 package dk.riis.jacob.hangman;
 
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,13 +98,14 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View choices) {
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         WinScreen_frag winScreen_frag;
         LooseScreen_frag looseScreen_frag;
         InputName_frag inputName_frag;
         FirstPage_frag firstPage_frag;
         win = 0;
-        Highscore_frag highscore_frag;
-        Bundle bundle, bundle2, bundle3;
+        Bundle bundle, bundle1;
         String letter = input.getText().toString();
         input.setError(null);
 
@@ -132,18 +135,14 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 if (galgelogik.erSpilletVundet()) {
                     info.setText("You escaped the noose!");
                     winScreen_frag = new WinScreen_frag();
-                    highscore_frag = new Highscore_frag();
                     win = 1;
                     String winningPlayer = word;
+
+                    sharedPreferences.edit().putString("playerName", winningPlayer).putInt("playerScore", win).commit();
 
                     bundle = new Bundle();
                     bundle.putInt("tries",tries);
                     winScreen_frag.setArguments(bundle);
-
-//                    bundle2 = new Bundle();
-//                    bundle2.putString("player", winningPlayer);
-//                    bundle2.putInt("win",win);
-//                    highscore_frag.setArguments(bundle2);
 
                     fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
@@ -156,9 +155,9 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     info.setText("Game over!");
                     looseScreen_frag = new LooseScreen_frag();
 
-                    bundle3 = new Bundle();
-                    bundle3.putString("word", word);
-                    looseScreen_frag.setArguments(bundle3);
+                    bundle1 = new Bundle();
+                    bundle1.putString("word", word);
+                    looseScreen_frag.setArguments(bundle1);
 
                     fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
