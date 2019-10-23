@@ -44,9 +44,11 @@ public class Highscore {
         return sum;
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Highscore{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

@@ -16,11 +16,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/highscoreText"
-            android:textColor="@color/textColor2"
-            android:text="PLAYER SCORES!"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:text="HIGHSCORES"
             android:textAlignment="center"
+            android:layout_marginBottom="@dimen/cardview_compat_inset_shadow"
             android:textSize="35sp"
-            android:background="@color/activityMainBackground"/>
+            android:background="@color/highscoreTextBackground"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/listInfoPlayer"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:layout_width="281dp"
+                android:layout_height="match_parent"
+                android:background="@color/highscoreTextBackground"
+                android:text="Players"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/listInfoScore"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:layout_width="284dp"
+                android:layout_height="match_parent"
+                android:background="@color/highscoreTextBackground"
+                android:text="Wins"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/listView"

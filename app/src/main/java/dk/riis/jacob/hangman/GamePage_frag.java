@@ -1,5 +1,6 @@
 package dk.riis.jacob.hangman;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -17,6 +18,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -33,20 +41,28 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    private SharedPreferences sharedPreferences;
+    private Highscore highscoreElement;
+    private SharedPreferences.Editor editor;
+    private ArrayList<Highscore> savedHighscores;
+    private Gson gson;
+    private String json;
+
+    private List<Highscore> highscoreArrayList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_game_page_frag,container,false);
 
+
+
         word = galgelogik.getOrdet();
         System.out.println("The word: "+word);
 
         // Set the value of tries to 0 when the fragment is loaded
         tries = 0;
-
-        // The win is set to 0, and if the player wins, it will be set to 1 and send in the bundle.
-        win = 0;
 
         // Get the bundle1 with the players name from InputName_frag
         Bundle bundle = getArguments();
@@ -98,12 +114,11 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View choices) {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         WinScreen_frag winScreen_frag;
         LooseScreen_frag looseScreen_frag;
         InputName_frag inputName_frag;
         FirstPage_frag firstPage_frag;
+
         win = 0;
         Bundle bundle, bundle1;
         String letter = input.getText().toString();
@@ -133,12 +148,24 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 showHangmanPic(count);
 
                 if (galgelogik.erSpilletVundet()) {
+
                     info.setText("You escaped the noose!");
                     winScreen_frag = new WinScreen_frag();
+                    gson = new Gson();
                     win = 1;
-                    String winningPlayer = word;
+                    String winningPlayer = player;
 
-                    sharedPreferences.edit().putString("playerName", winningPlayer).putInt("playerScore", win).commit();
+                    loadFromPrefs();
+
+                    highscoreElement = new Highscore(winningPlayer,win);
+                    savedHighscores.add(highscoreElement);
+
+                    saveToPrefs();
+
+                    if (sharedPreferences.contains("highscoreList")){
+                        Toast.makeText(getActivity(),"Highscore added", Toast.LENGTH_LONG).show();
+                        printHighscoreList();
+                    }
 
                     bundle = new Bundle();
                     bundle.putInt("tries",tries);
@@ -235,6 +262,64 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
             default:
                 System.out.println("Something went wrong!!");
 
+        }
+    }
+
+    /**
+     *
+     *
+     * @return
+     */
+    private boolean checkArraList(){
+
+        return true;
+    }
+
+    private void printHighscoreList(){
+        for (int i = 0; i < savedHighscores.size(); i++) {
+            System.out.println(savedHighscores.get(i));
+        }
+    }
+
+    private void saveToPrefs(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editor = sharedPreferences.edit();
+        gson = new Gson();
+        String json = gson.toJson(savedHighscores);
+        editor.putString("highscoreList", json);
+        editor.apply();
+    }
+
+    private void loadFromPrefs(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        gson = new Gson();
+        String json = sharedPreferences.getString("highscoreList", null);
+        Type type = new TypeToken<ArrayList<Highscore>>() {}.getType();
+        savedHighscores = gson.fromJson(json,type);
+
+        if (savedHighscores == null){
+            savedHighscores = new ArrayList<>();
+        }
+    }
+
+    private void savePrefs(){
+        sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        gson = new Gson();
+        String json = gson.toJson(savedHighscores);
+        editor.putString("highscoreList", json);
+        editor.apply();
+    }
+
+    private void loadPrefs(){
+        sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        gson = new Gson();
+        String json = sharedPreferences.getString("highscoreList", null);
+        Type type = new TypeToken<ArrayList<Highscore>>() {}.getType();
+        savedHighscores = gson.fromJson(json,type);
+
+        if (savedHighscores == null){
+            savedHighscores = new ArrayList<>();
         }
     }
 }

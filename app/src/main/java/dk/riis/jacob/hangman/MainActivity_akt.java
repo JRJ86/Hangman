@@ -23,9 +23,6 @@ public class MainActivity_akt extends AppCompatActivity implements View.OnClickL
 
         Log.d(TAG, "onCreate: Started.");
 
-        btn = findViewById(R.id.button);
-        btn.setOnClickListener(this);
-
         if (savedInstanceState == null){
             Fragment fragment = new FirstPage_frag();
             getSupportFragmentManager().beginTransaction().add(R.id.fragContainer,fragment).commit();

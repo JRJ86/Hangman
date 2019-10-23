@@ -7,39 +7,46 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
 public class Highscore_frag extends Fragment implements View.OnClickListener{
 
-    Galgelogik galgelogik = new Galgelogik();
-
-    private ArrayList<Highscore> highscores = new ArrayList<>();
-
+    private ArrayList<Highscore> highscores;//() = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_highscore_frag, container, false);
 
+        System.out.println("Loading pref");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        String highscoreList = sharedPreferences.getString("playerName",)
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("highscoreList",null);
+        if (!(sharedPreferences.contains("highscoreList"))){
+            System.out.println("Nothing in list");
+        }else {
+            Type type = new TypeToken<ArrayList<Highscore>>(){}.getType();
+            highscores = gson.fromJson(json,type);
+            System.out.println("Loaded json");
+        }
+
+        System.out.println("Scores: ");
+        for (int i = 0; i < highscores.size(); i++) {
+            System.out.println(highscores.get(i));
+        }
 
         ListView listView = view.findViewById(R.id.listView);
 
-
-        inputHighscores();
-
-        HighscoreListAdapter adapter = new HighscoreListAdapter(this.getActivity(), R.layout.higscore_element, highscores);
+        HighscoreListAdapter adapter = new HighscoreListAdapter(getActivity(), R.layout.higscore_element, highscores);
         listView.setAdapter(adapter);
 
         return view;
@@ -49,43 +56,4 @@ public class Highscore_frag extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
 
     }
-
-    /**
-     * This method inputs som fake highscores into the Highscorelist
-     */
-    public void inputHighscores(){
-        Highscore one = new Highscore("Valdemar", 10);
-        Highscore two = new Highscore("Jacob", 20);
-        Highscore three = new Highscore("Nick", 15);
-        Highscore four = new Highscore("Morten", 2);
-        Highscore five = new Highscore("Michael", 8);
-        Highscore six = new Highscore("Jesper", 9);
-        Highscore seven = new Highscore("Alexander", 17);
-        Highscore eight = new Highscore("Malte", 11);
-        Highscore nine = new Highscore("Jimmi", 5);
-        Highscore ten = new Highscore("Andreas", 16);
-        Highscore eleven = new Highscore("Kristian", 14);
-        Highscore twelve = new Highscore("Simon", 10);
-        Highscore thirteen = new Highscore("Claes", 19);
-        Highscore fourteen = new Highscore("Jørgen", 17);
-        Highscore fifteen = new Highscore("Svend", 4);
-        Highscore sixteen = new Highscore("Mogens", 8);
-        highscores.add(one);
-        highscores.add(two);
-        highscores.add(three);
-        highscores.add(four);
-        highscores.add(five);
-        highscores.add(six);
-        highscores.add(seven);
-        highscores.add(eight);
-        highscores.add(nine);
-        highscores.add(ten);
-        highscores.add(eleven);
-        highscores.add(twelve);
-        highscores.add(thirteen);
-        highscores.add(fourteen);
-        highscores.add(fifteen);
-        highscores.add(sixteen);
-    }
-
 }
