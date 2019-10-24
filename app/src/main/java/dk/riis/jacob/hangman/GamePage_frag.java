@@ -110,13 +110,22 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    /**
+     *
+     *
+     * @param choices
+     */
     @Override
     public void onClick(View choices) {
+
+// -----The objects for the change fragment functions-----------------------------------------------
 
         WinScreen_frag winScreen_frag;
         LooseScreen_frag looseScreen_frag;
         InputName_frag inputName_frag;
         FirstPage_frag firstPage_frag;
+
+// -----Various variables---------------------------------------------------------------------------
 
         win = 0;
         Bundle bundle, bundle1;

@@ -16,14 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/highscoreText"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/textColor1"
             android:fontFamily="casual"
             android:textStyle="bold"
             android:text="HIGHSCORES"
             android:textAlignment="center"
             android:layout_marginBottom="@dimen/cardview_compat_inset_shadow"
             android:textSize="35sp"
-            android:background="@color/highscoreTextBackground"/>
+            android:background="@color/highscoreFragTextBack"/>
 
 
         <LinearLayout
@@ -37,9 +37,9 @@
                 android:textStyle="bold"
                 android:layout_width="281dp"
                 android:layout_height="match_parent"
-                android:background="@color/highscoreTextBackground"
+                android:background="@color/highscoreFragTextBack"
                 android:text="Players"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColor1"
                 android:textSize="25sp" />
 
             <TextView
@@ -48,9 +48,9 @@
                 android:textStyle="bold"
                 android:layout_width="284dp"
                 android:layout_height="match_parent"
-                android:background="@color/highscoreTextBackground"
+                android:background="@color/highscoreFragTextBack"
                 android:text="Wins"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColor1"
                 android:textSize="25sp" />
 
 

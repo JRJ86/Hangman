@@ -7,7 +7,8 @@
     <color name="inputNameBackground">#FFFFFF</color>
     <color name="highscoreTextBackground">#FFFFFF</color>
     <color name="activityMainBackground">#000000</color>
-    <color name="fragmentContainerBackground">#312F2F</color>
-    <color name="textColor1">#bb0a1e</color>
-    <color name="textColor2">#F8F8F8</color>
+    <color name="fragmentContainerBackground">#FFFFFF</color>
+    <color name="textColor1">#FFFFFF</color>
+    <color name="textColor2">#000000</color>
+    <color name="highscoreFragTextBack">#5C5C5C</color>
 </resources>
