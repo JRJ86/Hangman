@@ -47,6 +47,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private ArrayList<Highscore> savedHighscores;
     private Gson gson;
     private String json;
+    private boolean playerFound = false;
 
     private List<Highscore> highscoreArrayList;
 
@@ -55,8 +56,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_game_page_frag,container,false);
-
-
 
         word = galgelogik.getOrdet();
         System.out.println("The word: "+word);
@@ -147,6 +146,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 System.out.println(count);
                 showHangmanPic(count);
 
+// -------------If the game is lost-----------------------------------------------------------------
+
                 if (galgelogik.erSpilletVundet()) {
 
                     info.setText("You escaped the noose!");
@@ -155,10 +156,26 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     win = 1;
                     String winningPlayer = player;
 
+// -----------------Load the highscore list from SharedPreferences----------------------------------
+
                     loadFromPrefs();
 
-                    highscoreElement = new Highscore(winningPlayer,win);
-                    savedHighscores.add(highscoreElement);
+// -----------------Check if the list contains the player with the corresponding name---------------
+
+                    for (Highscore highscore: savedHighscores){
+                        if (highscore.getName().equals(winningPlayer)){
+                            highscore.setName(winningPlayer);
+                            highscore.setScore(highscore.getScore() + 1);
+                            playerFound = true;
+                        }
+                    }
+
+                    if (!playerFound){
+                        highscoreElement = new Highscore(winningPlayer,win);
+                        savedHighscores.add(highscoreElement);
+                    }
+
+// -----------------Save the updated list to SharedPreferences--------------------------------------
 
                     saveToPrefs();
 
@@ -167,18 +184,25 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                         printHighscoreList();
                     }
 
+// -----------------Send data to win screen---------------------------------------------------------
+
                     bundle = new Bundle();
                     bundle.putInt("tries",tries);
                     winScreen_frag.setArguments(bundle);
+
+// -----------------Go to win screen and nullify the galgelogik object------------------------------
 
                     fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragContainer,winScreen_frag);
                     fragmentTransaction.commit();
                     GamePage_frag.galgelogik.nulstil();
-
                 }
+
+// -------------If the game is won------------------------------------------------------------------
+
                 if (galgelogik.erSpilletTabt()) {
+
                     info.setText("Game over!");
                     looseScreen_frag = new LooseScreen_frag();
 
@@ -278,6 +302,12 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private void printHighscoreList(){
         for (int i = 0; i < savedHighscores.size(); i++) {
             System.out.println(savedHighscores.get(i));
+        }
+    }
+
+    private void removeFromList(){
+        for (int i = 0; i < savedHighscores.size(); i++){
+            savedHighscores.remove(i);
         }
     }
 
