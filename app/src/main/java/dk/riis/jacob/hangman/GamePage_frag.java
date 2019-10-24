@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class GamePage_frag extends Fragment implements View.OnClickListener {
 
+    // Instead of a singleton the object is made static to secure on one instance of it.
     static Galgelogik galgelogik = new Galgelogik();
 
     private Button ok, clear, newGame, backToMain;
@@ -57,6 +58,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_game_page_frag,container,false);
 
+        // The hidden word
         word = galgelogik.getOrdet();
         System.out.println("The word: "+word);
 
@@ -102,6 +104,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         newGame.setOnClickListener(this);
         backToMain.setOnClickListener(this);
 
+        // Prints in the terminal what the hidden word is and other information
         galgelogik.logStatus();
 
         // Sets the TextView to display the hidden word with '*'
@@ -111,9 +114,9 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     }
 
     /**
+     * Method that reacts when you click on a view
      *
-     *
-     * @param choices
+     * @param choices the view you click on.
      */
     @Override
     public void onClick(View choices) {
@@ -132,6 +135,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         String letter = input.getText().toString();
         input.setError(null);
 
+// -----Input control-------------------------------------------------------------------------------
+
         if (choices == ok && letter.length() != 1){
             input.setError("Your input must contain exactly 1 letter.");
             Toast.makeText(getActivity(), "Input a letter.", Toast.LENGTH_LONG).show();
@@ -143,14 +148,23 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
             return;
 
         }
+
+// -----When you want to press a letter and press ok------------------------------------------------
+
         try{
             if (choices == ok) {
                 galgelogik.gætBogstav(letter);
+
+                // Increment the tries for each press
                 tries += 1;
+
+                // Various stuff
                 input.setText("");
                 info.setText("You got " +galgelogik.getAntalForkerteBogstaver()+ " wrong letters.");
                 wrongLetters.setText("" +galgelogik.getBrugteBogstaver());
                 hiddenWord.setText(galgelogik.getSynligtOrd());
+
+                // Number of wrong choices
                 count = galgelogik.getAntalForkerteBogstaver();
                 System.out.println(count);
                 showHangmanPic(count);
@@ -158,7 +172,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is lost-----------------------------------------------------------------
 
                 if (galgelogik.erSpilletVundet()) {
-
                     info.setText("You escaped the noose!");
                     winScreen_frag = new WinScreen_frag();
                     gson = new Gson();
@@ -186,7 +199,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
 // -----------------Save the updated list to SharedPreferences--------------------------------------
 
-                    saveToPrefs();
+                    saveToPrefs(savedHighscores);
 
                     if (sharedPreferences.contains("highscoreList")){
                         Toast.makeText(getActivity(),"Highscore added", Toast.LENGTH_LONG).show();
@@ -211,7 +224,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is won------------------------------------------------------------------
 
                 if (galgelogik.erSpilletTabt()) {
-
                     info.setText("Game over!");
                     looseScreen_frag = new LooseScreen_frag();
 
@@ -224,13 +236,17 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     fragmentTransaction.replace(R.id.fragContainer,looseScreen_frag);
                     fragmentTransaction.commit();
                     GamePage_frag.galgelogik.nulstil();
-
                 }
             }
+
+// ---------Clear the EditText----------------------------------------------------------------------
+
             if(choices == clear ){
                 input.setText("");
-
             }
+
+// ---------Back to main menu-----------------------------------------------------------------------
+
             if(choices == backToMain ){
                 firstPage_frag = new FirstPage_frag();
                 fragmentManager = getActivity().getSupportFragmentManager();
@@ -238,8 +254,10 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 fragmentTransaction.replace(R.id.fragContainer,firstPage_frag);
                 fragmentTransaction.commit();
                 GamePage_frag.galgelogik.nulstil();
-
             }
+
+// ---------Start a new game------------------------------------------------------------------------
+
             if(choices == newGame){
                 inputName_frag = new InputName_frag();
                 fragmentManager = getActivity().getSupportFragmentManager();
@@ -247,12 +265,11 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 fragmentTransaction.replace(R.id.fragContainer,inputName_frag);
                 fragmentTransaction.commit();
                 GamePage_frag.galgelogik.nulstil();
-
             }
+
         }catch(Exception e){
             Toast.makeText(getActivity(),"Some error has ocurred: "+e.getMessage(),Toast.LENGTH_LONG).show();
             e.printStackTrace();
-
         }
     }
 
@@ -299,36 +316,38 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     }
 
     /**
-     *
-     *
-     * @return
+     * Prints the current highscores when loaded from PreferenceManager
      */
-    private boolean checkArraList(){
-
-        return true;
-    }
-
     private void printHighscoreList(){
         for (int i = 0; i < savedHighscores.size(); i++) {
             System.out.println(savedHighscores.get(i));
         }
     }
 
+    /**
+     * Removes the highscore list when loaded from PreferenceManager
+     */
     private void removeFromList(){
         for (int i = 0; i < savedHighscores.size(); i++){
             savedHighscores.remove(i);
         }
     }
 
-    private void saveToPrefs(){
+    /**
+     * Save a list to PreferenceManager
+     */
+    private void saveToPrefs(ArrayList list){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String json = gson.toJson(savedHighscores);
+        String json = gson.toJson(list);
         editor.putString("highscoreList", json);
         editor.apply();
     }
 
+    /**
+     * Load a the highscore list from PreferenceManager
+     */
     private void loadFromPrefs(){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         gson = new Gson();
@@ -340,6 +359,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
             savedHighscores = new ArrayList<>();
         }
     }
+
+// -Alternate methods to save and load lists to PreferenceManager-----------------------------------
 
     private void savePrefs(){
         sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
