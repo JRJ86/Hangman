@@ -47,6 +47,12 @@ public class Highscore implements Comparable {
                 '}';
     }
 
+    /**
+     * Used to sort objects in list after what the score is.
+     *
+     * @param o The Highscore object
+     * @return the compared score
+     */
     @Override
     public int compareTo(Object o) {
         int compareScore = ((Highscore)o).getScore();
