@@ -41,7 +41,7 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View choice) {
 
-        FirstPage_frag firstPage_frag;
+        WelcomePage_frag welcomePage_frag;
         InputName_frag inputName_frag;
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;
@@ -55,10 +55,10 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
             GamePage_frag.galgelogik.nulstil();
 
         }else if (choice == no){
-            firstPage_frag = new FirstPage_frag();
+            welcomePage_frag = new WelcomePage_frag();
             fragmentManager = getActivity().getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragContainer,firstPage_frag);
+            fragmentTransaction.replace(R.id.fragContainer, welcomePage_frag);
             fragmentTransaction.commit();
             GamePage_frag.galgelogik.nulstil();
 

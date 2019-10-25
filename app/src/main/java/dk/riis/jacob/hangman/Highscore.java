@@ -2,7 +2,7 @@ package dk.riis.jacob.hangman;
 
 import android.widget.ImageView;
 
-public class Highscore {
+public class Highscore implements Comparable {
 
     private String name;
     private int score;
@@ -39,16 +39,17 @@ public class Highscore {
         this.score = score;
     }
 
-    public int scoreSum(){
-        int sum = getScore() + 1;
-        return sum;
-    }
-
     @Override
     public String toString() {
         return "Highscore{" +
                 "name='" + name + '\'' +
                 ", score=" + score +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int compareScore = ((Highscore)o).getScore();
+        return compareScore - this.score;
     }
 }

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class FirstPage_frag extends Fragment implements View.OnClickListener {
+public class WelcomePage_frag extends Fragment implements View.OnClickListener {
 
     private Button play, highscore;
     private TextView headline;

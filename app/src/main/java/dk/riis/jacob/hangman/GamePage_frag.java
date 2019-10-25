@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -126,7 +127,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         WinScreen_frag winScreen_frag;
         LooseScreen_frag looseScreen_frag;
         InputName_frag inputName_frag;
-        FirstPage_frag firstPage_frag;
+        WelcomePage_frag welcomePage_frag;
 
 // -----Various variables---------------------------------------------------------------------------
 
@@ -197,6 +198,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                         savedHighscores.add(highscoreElement);
                     }
 
+                    Collections.sort(savedHighscores);
+
 // -----------------Save the updated list to SharedPreferences--------------------------------------
 
                     saveToPrefs(savedHighscores);
@@ -248,10 +251,10 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // ---------Back to main menu-----------------------------------------------------------------------
 
             if(choices == backToMain ){
-                firstPage_frag = new FirstPage_frag();
+                welcomePage_frag = new WelcomePage_frag();
                 fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragContainer,firstPage_frag);
+                fragmentTransaction.replace(R.id.fragContainer, welcomePage_frag);
                 fragmentTransaction.commit();
                 GamePage_frag.galgelogik.nulstil();
             }
@@ -382,4 +385,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
             savedHighscores = new ArrayList<>();
         }
     }
+
+
 }
