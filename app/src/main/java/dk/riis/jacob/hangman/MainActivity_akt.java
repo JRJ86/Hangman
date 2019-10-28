@@ -5,13 +5,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity_akt extends AppCompatActivity implements View.OnClickListener {
 
     private static  final String TAG = "MainActivity";
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle barDrawerToggle;
 
     private Button btn;
     private FragmentTransaction fragmentTransaction;
@@ -20,6 +25,14 @@ public class MainActivity_akt extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        barDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open,R.string.close);
+
+        drawerLayout.addDrawerListener(barDrawerToggle);
+        barDrawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG, "onCreate: Started.");
 
