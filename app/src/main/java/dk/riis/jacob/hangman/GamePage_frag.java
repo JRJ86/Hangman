@@ -48,7 +48,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private SharedPreferences.Editor editor;
     private ArrayList<Highscore> savedHighscores;
     private Gson gson;
-    private String json;
     private boolean playerFound = false;
 
     private List<Highscore> highscoreArrayList;

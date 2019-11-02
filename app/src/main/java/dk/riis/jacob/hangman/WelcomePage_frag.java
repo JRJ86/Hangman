@@ -21,7 +21,7 @@ public class WelcomePage_frag extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first_page,container,false);
+        View view = inflater.inflate(R.layout.fragment_welcome_page,container,false);
 
         play = view.findViewById(R.id.goToGame);
         play.setOnClickListener(this);
@@ -44,7 +44,7 @@ public class WelcomePage_frag extends Fragment implements View.OnClickListener {
 
         if (choice == headline ) {
             if (headline.getText().toString() == "Beware the rope!!") {
-                headline.setText("Hangman!");
+                headline.setText("Hangman");
             } else {
                 headline.setText("Beware the rope!!");
             }

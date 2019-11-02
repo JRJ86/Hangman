@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/activityMainBackground"
     tools:context="dk.riis.jacob.hangman.MainActivity_akt"
     android:id="@+id/drawerLayout">
 
@@ -34,13 +33,12 @@
 
     </FrameLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/leftMenu"
-            app:menu="@menu/navigation_menu"
-            android:layout_gravity="start">
-
-        </com.google.android.material.navigation.NavigationView>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/leftMenu"
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start">
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
