@@ -12,10 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LooseScreen_frag extends Fragment implements View.OnClickListener {
 
     private Button yes, no;

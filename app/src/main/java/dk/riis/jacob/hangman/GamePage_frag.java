@@ -103,17 +103,31 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         galgelogik.logStatus();
 
         // Sets the TextView to display the hidden word with '*'
-        class GetHiddenWord extends AsyncTask {
+        class HiddenWord extends AsyncTask<String,String,String>{
 
+            public HiddenWord() {
+                super();
+            }
+
+            /**
+             * What happens after the background thread is done-
+             *
+             * @param theHiddenWord The hidden word
+             */
             @Override
-            protected void onPostExecute(Object result) {
-                hiddenWord.setText(""+result);
+            protected void onPostExecute(String theHiddenWord) {
+                hiddenWord.setText(theHiddenWord);
                 word = galgelogik.getOrdet();
                 System.out.println("The word: "+word);
             }
 
+            /**
+             * The background thread that fetches the word via network communication
+             *
+             * @return The hidden word from som online source specified in Galgelogik
+             */
             @Override
-            protected Object doInBackground(Object[] objects) {
+            protected String doInBackground(String... strings) {
                 try {
                     galgelogik.hentOrdFraDr();
                 } catch (Exception e) {
@@ -121,13 +135,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 }
                 return galgelogik.getSynligtOrd();
             }
-
-            @Override
-            protected void onProgressUpdate(Object[] values) {
-
-            }
         }
-        new GetHiddenWord().execute();
+        new HiddenWord().execute();
 
         return view;
     }
