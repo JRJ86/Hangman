@@ -3,6 +3,7 @@ package dk.riis.jacob.hangman;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -24,14 +25,13 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class GamePage_frag extends Fragment implements View.OnClickListener {
 
-    // Instead of a singleton the object is made static to secure on one instance of it.
+    // Instead of a singleton, the object is made static to secure on one instance of it.
     static Galgelogik galgelogik = new Galgelogik();
 
     private Button ok, clear, newGame, backToMain;
@@ -50,17 +50,12 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private Gson gson;
     private boolean playerFound = false;
 
-    private List<Highscore> highscoreArrayList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_game_page_frag,container,false);
-
-        // The hidden word
-        word = galgelogik.getOrdet();
-        System.out.println("The word: "+word);
 
         // Set the value of tries to 0 when the fragment is loaded
         tries = 0;
@@ -108,7 +103,31 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         galgelogik.logStatus();
 
         // Sets the TextView to display the hidden word with '*'
-        hiddenWord.setText(galgelogik.getSynligtOrd());
+        class GetHiddenWord extends AsyncTask {
+
+            @Override
+            protected void onPostExecute(Object result) {
+                hiddenWord.setText(""+result);
+                word = galgelogik.getOrdet();
+                System.out.println("The word: "+word);
+            }
+
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                try {
+                    galgelogik.hentOrdFraDr();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return galgelogik.getSynligtOrd();
+            }
+
+            @Override
+            protected void onProgressUpdate(Object[] values) {
+
+            }
+        }
+        new GetHiddenWord().execute();
 
         return view;
     }
@@ -153,6 +172,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
         try{
             if (choices == ok) {
+
                 galgelogik.gætBogstav(letter);
 
                 // Increment the tries for each press

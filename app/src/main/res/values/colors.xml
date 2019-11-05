@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FFEB3B</color>
 
-    <color name="inputNameBackground">#FFFFFF</color>
+    <color name="inputNameBackground">#000000</color>
     <color name="highscoreTextBackground">#FFFFFF</color>
     <color name="activityMainBackground">#000000</color>
     <color name="fragmentContainerBackground">#FFFFFF</color>

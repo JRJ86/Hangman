@@ -33,7 +33,7 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
         no.setOnClickListener(this);
 
         numberOfTries = view.findViewById(R.id.numberOfTries);
-        numberOfTries.setText("You used "+tries+" to achieve victory.");
+        numberOfTries.setText("You used "+tries+" tries to achieve victory.");
 
         return view;
     }
@@ -64,4 +64,9 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
 
         }
     }
+//    public void skjulTastatur(View v) {
+//        InputMethodManager imm = (InputMethodManager).getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+//    }
+
 }
