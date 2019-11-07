@@ -11,4 +11,5 @@
     <color name="textColor1">#FFFFFF</color>
     <color name="textColor2">#000000</color>
     <color name="highscoreFragTextBack">#5C5C5C</color>
+    <color name="navigationHeader">#5C5C5C</color>
 </resources>
