@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,7 +50,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     private ArrayList<Highscore> savedHighscores;
     private Gson gson;
     private boolean playerFound = false;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +102,9 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         // Prints in the terminal what the hidden word is and other information
         galgelogik.logStatus();
 
-        // Sets the TextView to display the hidden word with '*'
+//------To get the hidden word from dr.dk´s website AsyncTask is used-------------------------------
+
+
         class HiddenWord extends AsyncTask<String,String,String>{
 
             public HiddenWord() {
@@ -412,6 +414,18 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         if (savedHighscores == null){
             savedHighscores = new ArrayList<>();
         }
+    }
+
+    /**
+     * This function hides the keyboard, if it is present when you enter this fragment
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
 

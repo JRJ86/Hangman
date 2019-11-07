@@ -67,6 +67,11 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * This function hides the keyboard, if it is present when you enter this fragment
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

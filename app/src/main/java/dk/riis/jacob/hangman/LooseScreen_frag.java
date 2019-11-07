@@ -1,10 +1,11 @@
 package dk.riis.jacob.hangman;
 
-
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ *
+ */
 public class LooseScreen_frag extends Fragment implements View.OnClickListener {
 
     private Button yes, no;
@@ -66,5 +70,17 @@ public class LooseScreen_frag extends Fragment implements View.OnClickListener {
 
         }
 
+    }
+
+    /**
+     * This function hides the keyboard, if it is present when you enter this fragment
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 }
