@@ -17,6 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ * The main activity which holds the actionbar, the navigation drawer and the fragment container
+ * that switches content based on which fragment is displayed.
+ */
 public class MainActivity_akt extends AppCompatActivity {
 
     private static  final String TAG = "MainActivity";
@@ -110,6 +114,12 @@ public class MainActivity_akt extends AppCompatActivity {
         });
     }
 
+    /**
+     * Changes fragment from the navigation drawer.
+     *
+     * @param fragment The fragment you want to change to
+     * @return         True if the function goes through
+     */
     public boolean changeFragFromMenu(Fragment fragment){
         fragmentManager = MainActivity_akt.this.getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
