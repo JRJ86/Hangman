@@ -55,7 +55,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_game_page_frag,container,false);
+        View view = inflater.inflate(R.layout.fragment_game_page,container,false);
 
         // Set the value of tries to 0 when the fragment is loaded
         tries = 0;

@@ -18,14 +18,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
-public class Highscore_frag extends Fragment implements View.OnClickListener{
+public class Highscore_frag extends Fragment {
 
-    private ArrayList<Highscore> highscores;//() = new ArrayList<>();
+    private ArrayList<Highscore> highscores = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_highscore_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_highscore, container, false);
 
         System.out.println("Loading pref");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -50,10 +50,5 @@ public class Highscore_frag extends Fragment implements View.OnClickListener{
         listView.setAdapter(adapter);
 
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

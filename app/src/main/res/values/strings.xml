@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">s185122_Hangman</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="welcome_hang_pic">Hangman pic</string>
 
     <string name="inputNameInfo">
@@ -11,8 +8,26 @@
         If you win you get to live another day. \n
         If you loose. well you loose..
     </string>
-    
-    
+
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+<!--About fragment-->
+
+    <string name="aboutText">
+
+        I started programming very late in my life.
+        33 years old.
+        But i quickly realized. this is what i want to do with
+        my life.
+        I have always had a passion for gaming, software,
+        electronics and everything IT related.
+        I spend the first 13 years of my working
+        career as a mason. A decade later i finally
+        realized that i software engineering was
+        what i wanted to do.
+
+    </string>
+
+    <string name="aboutBackButton">Back to main menu</string>
 </resources>

@@ -27,7 +27,7 @@ public class InputName_frag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_input_name_frag,container,false);
+        View view = inflater.inflate(R.layout.fragment_input_name,container,false);
 
         inputName = view.findViewById(R.id.inputName);
 

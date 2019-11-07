@@ -20,7 +20,7 @@ public class HelpPage_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_help_page_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_help_page, container, false);
 
 
 
