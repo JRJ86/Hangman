@@ -8,13 +8,16 @@
             <menu>
 
                 <item android:id="@+id/nav_home"
-                    android:title="Home"/>
+                    android:title="Home"
+                    android:icon="@drawable/home"/>
 
                 <item android:id="@+id/nav_help"
-                    android:title="Help"/>
+                    android:title="Help"
+                    android:icon="@drawable/help"/>
 
                 <item android:id="@+id/nav_highscore"
-                    android:title="Highscore"/>
+                    android:title="Highscore"
+                    android:icon="@drawable/list"/>
 
             </menu>
 
@@ -25,10 +28,12 @@
             <menu>
 
                 <item android:id="@+id/nav_mail"
-                    android:title="Mail"/>
+                    android:title="Mail"
+                    android:icon="@drawable/mail"/>
 
                 <item android:id="@+id/nav_about"
-                    android:title="About the developer"/>
+                    android:title="About the developer"
+                    android:icon="@drawable/about"/>
 
             </menu>
 
