@@ -15,15 +15,13 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class About_frag extends Fragment implements View.OnClickListener {
 
-    private Button back;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        back = view.findViewById(R.id.backFromAbout);
+        Button back = view.findViewById(R.id.backFromAbout);
         back.setOnClickListener(this);
 
         return view;

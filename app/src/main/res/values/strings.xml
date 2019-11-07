@@ -12,7 +12,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-<!--About fragment-->
+<!--    About fragment-->
 
     <string name="aboutText">
 
@@ -28,6 +28,24 @@
         what i wanted to do.
 
     </string>
-
     <string name="aboutBackButton">Back to main menu</string>
+
+<!--    Help fragment-->
+
+    <string name="helpText">
+
+        The rules for Hangman is as follows:\n\n
+
+        - You need to guess the hidden word displayed by a number of \'*\'.\n
+        - If you guess the word before the man is hanged, you win!\n
+        - If you guess wrong 7 times, (the man is fully displayed in the noose,\n
+          and a final wrong answer will kill him) then you loose the game.\n\n
+        - Each time you win, you will go up a point in the highscore list. \n
+
+        If you press \'New game!\'. the game will reset and you can try again.\n\n
+        Good luck convict!
+
+    </string>
+    <string name="helpBackButton">Back to main menu</string>
+
 </resources>
