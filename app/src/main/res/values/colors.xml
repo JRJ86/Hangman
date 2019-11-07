@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#FFEB3B</color>
+    <color name="colorAccent">#C41B10</color>
     <color name="inputNameBackground">#000000</color>
     <color name="highscoreTextBackground">#FFFFFF</color>
     <color name="activityMainBackground">#000000</color>

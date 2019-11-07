@@ -1,5 +1,6 @@
 package dk.riis.jacob.hangman;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -80,6 +81,21 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                 .mutate()
                 .setColorFilter(getResources().getColor(R.color.inputNameBackground),
                         PorterDuff.Mode.SRC_ATOP);
+        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            /**
+             * This function removes the keyboard when the EditText no longer has focus
+             * @param v
+             * @param hasFocus
+             */
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
 
         // The hidden word + information
         hiddenWord = view.findViewById(R.id.hiddenWord);
