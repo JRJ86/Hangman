@@ -1,9 +1,10 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.fragment_controllers;
 
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +17,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import dk.riis.jacob.hangman.R;
+
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment gets a name from the player and sends it o the game page along with the user
  */
 public class InputName_frag extends Fragment implements View.OnClickListener {
 
     private EditText inputName;
     private Button hangHim;
-    private String player;
+    private static final String TAG = "InputName";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_input_name,container,false);
+
+        Log.d(TAG,"onCreate: started");
 
         inputName = view.findViewById(R.id.inputName);
 
@@ -61,15 +66,10 @@ public class InputName_frag extends Fragment implements View.OnClickListener {
         
     }
 
-    /**
-     * Does something when you click on a clackable view
-     *
-     * @param choice the clickable view you click on
-     */
     @Override
     public void onClick(View choice) {
 
-        player = inputName.getText().toString();
+        String player = inputName.getText().toString();
         inputName.setError(null);
 
         if (choice == hangHim && player.length() == 0 ){
@@ -91,9 +91,6 @@ public class InputName_frag extends Fragment implements View.OnClickListener {
                 gamePage_frag.setArguments(bundle);
 
                 fragmentTransaction.replace(R.id.fragContainer,gamePage_frag);
-
-                // This adds the fragment to the stack
-//                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
             }

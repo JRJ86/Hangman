@@ -1,4 +1,4 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.fragment_controllers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,25 +29,28 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import dk.riis.jacob.hangman.R;
+import dk.riis.jacob.hangman.model.Galgelogik;
+import dk.riis.jacob.hangman.model.Highscore;
+
 /**
- * A simple {@link Fragment} subclass.
+ * This class gives functionality to the game portion of the app
  */
 public class GamePage_frag extends Fragment implements View.OnClickListener {
+
+    private static final String TAG = "GamePage";
 
     // Instead of a singleton, the object is made static to secure on one instance of it.
     static Galgelogik galgelogik = new Galgelogik();
 
     private Button ok, clear, newGame, backToMain;
     private EditText input;
-    private TextView hiddenWord, wrongLetters, info, playerName;
+    private TextView hiddenWord, wrongLetters, info;
     private ImageView hangmanPic;
-    private int count, tries, win;
+    private int count, tries;
     private String player, word;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
 
     private SharedPreferences sharedPreferences;
-    private Highscore highscoreElement;
     private SharedPreferences.Editor editor;
     private ArrayList<Highscore> savedHighscores;
     private Gson gson;
@@ -57,6 +61,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_game_page,container,false);
+
+        Log.d(TAG,"onCreate: started");
 
         // Set the value of tries to 0 when the fragment is loaded
         tries = 0;
@@ -106,7 +112,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         hangmanPic = view.findViewById(R.id.hangman);
 
         // The players name
-        playerName = view.findViewById(R.id.playerName);
+        TextView playerName = view.findViewById(R.id.playerName);
         playerName.setText("Hello "+player);
 
         // The clickable views
@@ -167,6 +173,9 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View choices) {
 
+        FragmentManager fragmentManager;
+        FragmentTransaction fragmentTransaction;
+
 // -----The objects for the change fragment functions-----------------------------------------------
 
         WinScreen_frag winScreen_frag;
@@ -176,7 +185,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
 // -----Various variables---------------------------------------------------------------------------
 
-        win = 0;
+        int win;
         Bundle bundle, bundle1;
         String letter = input.getText().toString();
         input.setError(null);
@@ -240,7 +249,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     }
 
                     if (!playerFound){
-                        highscoreElement = new Highscore(winningPlayer,win);
+                        Highscore highscoreElement = new Highscore(winningPlayer,win);
                         savedHighscores.add(highscoreElement);
                     }
 

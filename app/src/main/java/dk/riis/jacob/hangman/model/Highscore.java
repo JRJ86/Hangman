@@ -1,26 +1,18 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.model;
 
-import android.widget.ImageView;
-
+/**
+ * This class represents a highscore element
+ * A player with a name, and the number of times he has won
+ */
 public class Highscore implements Comparable {
 
     private String name;
     private int score;
-    private ImageView pic;
 
-    public Highscore(String name) {
-        this.name = name;
-    }
 
     public Highscore(String name, int score) {
         this.name = name;
         this.score = score;
-    }
-
-    public Highscore(String name, int score, ImageView pic) {
-        this.name = name;
-        this.score = score;
-        this.pic = pic;
     }
 
     public String getName() {

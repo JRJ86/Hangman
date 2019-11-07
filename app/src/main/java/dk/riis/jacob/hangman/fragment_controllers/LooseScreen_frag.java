@@ -1,7 +1,8 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.fragment_controllers;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,29 +14,39 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class WinScreen_frag extends Fragment implements View.OnClickListener {
+import dk.riis.jacob.hangman.R;
+
+/**
+ * The fragment that is displayed when a game is lost.
+ * The correct word is displayed, sent from the game page fragment
+ */
+public class LooseScreen_frag extends Fragment implements View.OnClickListener {
 
     private Button yes, no;
+    private static final String TAG = "LooseScreen";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_win_screen,container,false);
 
-        TextView numberOfTries;
-        int tries;
+        View view = inflater.inflate(R.layout.fragment_loose_screen, container, false);
+
+        Log.d(TAG,"onCreate: started");
+
+        TextView rightWord;
+        String word;
 
         Bundle bundle = getArguments();
-        tries = bundle.getInt("tries");
+        word = bundle.getString("word");
 
-        yes = view.findViewById(R.id.winYes);
-        no = view.findViewById(R.id.winNo);
+        yes = view.findViewById(R.id.looseYes);
+        no = view.findViewById(R.id.looseNo);
 
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
 
-        numberOfTries = view.findViewById(R.id.numberOfTries);
-        numberOfTries.setText("You used "+tries+" tries to achieve victory.");
+        rightWord = view.findViewById(R.id.rightWord);
+        rightWord.setText("The right word was: "+word);
 
         return view;
     }
@@ -65,6 +76,7 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
             GamePage_frag.galgelogik.nulstil();
 
         }
+
     }
 
     /**
@@ -78,5 +90,4 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
-
 }

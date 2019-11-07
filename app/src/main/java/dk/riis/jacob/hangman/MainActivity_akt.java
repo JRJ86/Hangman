@@ -17,13 +17,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
+import dk.riis.jacob.hangman.fragment_controllers.About_frag;
+import dk.riis.jacob.hangman.fragment_controllers.HelpPage_frag;
+import dk.riis.jacob.hangman.fragment_controllers.Highscore_frag;
+import dk.riis.jacob.hangman.fragment_controllers.WelcomePage_frag;
+
 /**
  * The main activity which holds the actionbar, the navigation drawer and the fragment container
  * that switches content based on which fragment is displayed.
  */
 public class MainActivity_akt extends AppCompatActivity {
 
-    private static  final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle barDrawerToggle;
@@ -89,10 +94,10 @@ public class MainActivity_akt extends AppCompatActivity {
                     changeFragFromMenu(welcomePage_frag);
 
                 }else if (itemid == R.id.nav_help){
-                    changeFragFromMenu(helpPage_frag);
+                    changeFragFromMenuBackstack(helpPage_frag);
 
                 } else if (itemid == R.id.nav_highscore) {
-                    changeFragFromMenu(highscore_frag);
+                    changeFragFromMenuBackstack(highscore_frag);
 
                 } else if (itemid == R.id.nav_mail) {
                     Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
@@ -103,7 +108,7 @@ public class MainActivity_akt extends AppCompatActivity {
                     startActivity(intent);
 
                 } else if (itemid == R.id.nav_about) {
-                    changeFragFromMenu(about_frag);
+                    changeFragFromMenuBackstack(about_frag);
 
                 } else {
                     Toast.makeText(MainActivity_akt.this, "Du klikkede på noget ikke funktionelt. prøv igen",
@@ -115,12 +120,28 @@ public class MainActivity_akt extends AppCompatActivity {
     }
 
     /**
-     * Changes fragment from the navigation drawer.
+     * Changes fragment from the navigation drawer, with addToBackstack
      *
      * @param fragment The fragment you want to change to
      * @return         True if the function goes through
      */
-    public boolean changeFragFromMenu(Fragment fragment){
+    private boolean changeFragFromMenuBackstack(Fragment fragment){
+        fragmentManager = MainActivity_akt.this.getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        drawerLayout.closeDrawers();
+        return true;
+    }
+
+    /**
+     * Changes fragment from the navigation drawer
+     *
+     * @param fragment The fragment you want to change to
+     * @return         True if the function goes through
+     */
+    private boolean changeFragFromMenu(Fragment fragment){
         fragmentManager = MainActivity_akt.this.getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragContainer, fragment);
@@ -128,4 +149,5 @@ public class MainActivity_akt extends AppCompatActivity {
         drawerLayout.closeDrawers();
         return true;
     }
+
 }

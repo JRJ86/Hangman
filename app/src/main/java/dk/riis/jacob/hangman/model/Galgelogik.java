@@ -1,4 +1,4 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;

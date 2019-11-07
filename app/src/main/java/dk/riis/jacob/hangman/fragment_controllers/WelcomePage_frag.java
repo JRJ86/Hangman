@@ -1,6 +1,7 @@
-package dk.riis.jacob.hangman;
+package dk.riis.jacob.hangman.fragment_controllers;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import dk.riis.jacob.hangman.R;
+
+/**
+ * The first fragment that will be displayed. You can start a new game or checkout the highscores
+ */
 public class WelcomePage_frag extends Fragment implements View.OnClickListener {
 
     private Button play, highscore;
     private TextView headline;
+    private static final String TAG = "WelcomePage";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_welcome_page,container,false);
+
+        Log.d(TAG,"onCreate: started");
 
         play = view.findViewById(R.id.goToGame);
         play.setOnClickListener(this);
