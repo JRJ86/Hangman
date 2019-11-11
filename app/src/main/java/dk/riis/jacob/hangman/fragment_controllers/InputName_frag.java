@@ -47,8 +47,8 @@ public class InputName_frag extends Fragment implements View.OnClickListener {
 
             /**
              * This function removes the keyboard when the EditText no longer has focus
-             * @param v
-             * @param hasFocus
+             * @param v         The view
+             * @param hasFocus  If the view has focus
              */
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

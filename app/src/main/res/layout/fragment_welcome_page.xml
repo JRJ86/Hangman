@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
-            android:text="Hangman"
+            android:text="@string/headlineText1"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -38,7 +38,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42" />
+            app:layout_constraintVertical_bias="0.56" />
 
         <Button
             android:id="@+id/goToGame"
@@ -47,25 +47,7 @@
             android:layout_height="wrap_content"
             android:background="@color/fragmentContainerBackground"
             android:fontFamily="casual"
-            android:text="Play"
-            android:textAllCaps="true"
-            android:textColor="@color/textColor2"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/welcome_hang_pic"
-            app:layout_constraintStart_toStartOf="@+id/welcome_hang_pic"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.713" />
-
-        <Button
-            android:id="@+id/goToHighscore"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/fragmentContainerBackground"
-            android:fontFamily="casual"
-            android:text="Highscore"
+            android:text="@string/playButtonWelcome"
             android:textAllCaps="true"
             android:textColor="@color/textColor2"
             android:textSize="25sp"
@@ -75,6 +57,24 @@
             app:layout_constraintStart_toStartOf="@+id/welcome_hang_pic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.836" />
+
+        <Button
+            android:id="@+id/goToHighscore"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/fragmentContainerBackground"
+            android:fontFamily="casual"
+            android:text="@string/highscoreButtonWelcome"
+            android:textAllCaps="true"
+            android:textColor="@color/textColor2"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/welcome_hang_pic"
+            app:layout_constraintStart_toStartOf="@+id/welcome_hang_pic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.929" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

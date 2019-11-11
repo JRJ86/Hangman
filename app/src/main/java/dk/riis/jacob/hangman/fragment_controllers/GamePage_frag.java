@@ -91,8 +91,8 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
             /**
              * This function removes the keyboard when the EditText no longer has focus
-             * @param v
-             * @param hasFocus
+             * @param v        The view
+             * @param hasFocus If the view has focus
              */
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -113,7 +113,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
         // The players name
         TextView playerName = view.findViewById(R.id.playerName);
-        playerName.setText("Hello "+player);
+        playerName.setText("Hello " +player);
 
         // The clickable views
         ok.setOnClickListener(this);
@@ -228,7 +228,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is lost-----------------------------------------------------------------
 
                 if (galgelogik.erSpilletVundet()) {
-                    info.setText("You escaped the noose!");
+                    info.setText(R.string.winsGame);
                     winScreen_frag = new WinScreen_frag();
                     gson = new Gson();
                     win = 1;
@@ -282,7 +282,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is won------------------------------------------------------------------
 
                 if (galgelogik.erSpilletTabt()) {
-                    info.setText("Game over!");
+                    info.setText(R.string.loosesGame);
                     looseScreen_frag = new LooseScreen_frag();
 
                     bundle1 = new Bundle();

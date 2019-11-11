@@ -1,13 +1,50 @@
 <resources>
     <string name="app_name">s185122_Hangman</string>
 
-    <string name="welcome_hang_pic">Hangman pic</string>
+<!--    Welcome fragment-->
+
+    <string name="headlineText1">Hangman</string>
+    <string name="headlineText2">Beware the rope!!</string>
+    <string name="playButtonWelcome">Play</string>
+    <string name="highscoreButtonWelcome">Highscore</string>
+
+<!--    Input name fragment-->
 
     <string name="inputNameInfo">
         Let´s play a little game inmate. \n
         If you win you get to live another day. \n
         If you loose. well you loose..
     </string>
+
+<!--    Loose fragment-->
+
+<!--    TODO - not important-->
+
+<!--    Win fragment-->
+
+<!--    TODO - not important-->
+
+<!--    Game page fragment-->
+
+    <string name="playerNameGamePage">Hello </string>
+    <string name="winsGame">You escaped the noose!</string>
+    <string name="loosesGame">Game over!</string>
+    <string name="editTextHintXml">Input any letter</string>
+    <string name="confirmButtonXML">OK</string>
+    <string name="clearButtonXML">Clear</string>
+    <string name="newGameGamePageXML">New game</string>
+    <string name="backToMainGamePageXML">Back to main menu</string>
+    <string name="playerNameHintGamePageXML">Players name</string>
+
+<!--    Highscore fragment-->
+
+    <string name="highscoreHeadlineXML">HIGHSCORES</string>
+    <string name="playerHighscoreXML">Players</string>
+    <string name="winsHighscoreXML">Wins</string>
+
+    <string name="welcome_hang_pic">Hangman pic</string>
+
+    
 
     <string name="open">Open</string>
     <string name="close">Close</string>
