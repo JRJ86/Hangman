@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">s185122_Hangman</string>
 
-<!--    Welcome fragment-->
+    <!--    Welcome fragment-->
 
     <string name="headlineText1">Hangman</string>
     <string name="headlineText2">Beware the rope!!</string>
     <string name="playButtonWelcome">Play</string>
     <string name="highscoreButtonWelcome">Highscore</string>
 
-<!--    Input name fragment-->
+    <!--    Input name fragment-->
 
     <string name="inputNameInfo">
         Let´s play a little game inmate. \n
@@ -16,15 +16,15 @@
         If you loose. well you loose..
     </string>
 
-<!--    Loose fragment-->
+    <!--    Loose fragment-->
 
-<!--    TODO - not important-->
+    <!--    TODO - not important-->
 
-<!--    Win fragment-->
+    <!--    Win fragment-->
 
-<!--    TODO - not important-->
+    <!--    TODO - not important-->
 
-<!--    Game page fragment-->
+    <!--    Game page fragment-->
 
     <string name="playerNameGamePage">Hello </string>
     <string name="winsGame">You escaped the noose!</string>
@@ -36,7 +36,7 @@
     <string name="backToMainGamePageXML">Back to main menu</string>
     <string name="playerNameHintGamePageXML">Players name</string>
 
-<!--    Highscore fragment-->
+    <!--    Highscore fragment-->
 
     <string name="highscoreHeadlineXML">HIGHSCORES</string>
     <string name="playerHighscoreXML">Players</string>
@@ -44,12 +44,11 @@
 
     <string name="welcome_hang_pic">Hangman pic</string>
 
-    
 
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-<!--    About fragment-->
+    <!--    About fragment-->
 
     <string name="aboutText">
 
@@ -67,7 +66,7 @@
     </string>
     <string name="aboutBackButton">Back to main menu</string>
 
-<!--    Help fragment-->
+    <!--    Help fragment-->
 
     <string name="helpText">
 
@@ -84,5 +83,8 @@
 
     </string>
     <string name="helpBackButton">Back to main menu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
