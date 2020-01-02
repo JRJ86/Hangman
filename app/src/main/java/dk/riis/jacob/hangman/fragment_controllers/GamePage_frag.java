@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,9 +40,9 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     // Instead of a singleton, the object is made static to secure on one instance of it.
     static Galgelogik galgelogik = new Galgelogik();
 
-    private Button ok, clear, newGame, backToMain;
-    private EditText input;
-    private TextView hiddenWord, wrongLetters, info;
+    private Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ae,oe,aa;
+    private Button backToMain;
+    public TextView hiddenWord, wrongLetters;
     private ImageView hangmanPic;
     private int count, tries;
     private String player, word;
@@ -73,38 +72,43 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         count = galgelogik.getAntalForkerteBogstaver();
         System.out.println("Number of wrong letters: "+count);
 
-        // Buttons
-//        ok = view.findViewById(R.id.confirmLetter);
-//        clear = view.findViewById(R.id.clearText);
-//        newGame = view.findViewById(R.id.newGame);
-//        backToMain = view.findViewById(R.id.backToMain);
+        // Keyboard
+        a = view.findViewById(R.id.aBtn);
+        b = view.findViewById(R.id.bBtn);
+        c = view.findViewById(R.id.cBtn);
+        d = view.findViewById(R.id.dBtn);
+        e = view.findViewById(R.id.eBtn);
+        f = view.findViewById(R.id.fBtn);
+        g = view.findViewById(R.id.gBtn);
+        h = view.findViewById(R.id.hBtn);
+        i = view.findViewById(R.id.iBtn);
+        j = view.findViewById(R.id.jBtn);
+        k = view.findViewById(R.id.kBtn);
+        l = view.findViewById(R.id.lBtn);
+        m = view.findViewById(R.id.mBtn);
+        n = view.findViewById(R.id.nBtn);
+        o = view.findViewById(R.id.oBtn);
+        p = view.findViewById(R.id.pBtn);
+        q = view.findViewById(R.id.qBtn);
+        r = view.findViewById(R.id.rBtn);
+        s = view.findViewById(R.id.sBtn);
+        t = view.findViewById(R.id.tBtn);
+        u = view.findViewById(R.id.uBtn);
+        v = view.findViewById(R.id.vBtn);
+        w = view.findViewById(R.id.wBtn);
+        x = view.findViewById(R.id.xBtn);
+        y = view.findViewById(R.id.yBtn);
+        z = view.findViewById(R.id.zBtn);
+        ae = view.findViewById(R.id.aeBtn);
+        oe = view.findViewById(R.id.oeBtn);
+        aa = view.findViewById(R.id.aaBtn);
 
-        // Bar to input letters
-//        input = view.findViewById(R.id.inputLetter);
-//        input.getBackground()
-//                .mutate()
-//                .setColorFilter(getResources().getColor(R.color.inputNameBackground),
-//                        PorterDuff.Mode.SRC_ATOP);
-//        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            /**
-//             * This function removes the keyboard when the EditText no longer has focus
-//             * @param v        The view
-//             * @param hasFocus If the view has focus
-//             */
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus){
-//                    InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-//                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-//                }
-//            }
-//        });
+        // Buttons
+        backToMain = view.findViewById(R.id.backToMainFromGame);
 
         // The hidden word + information
         hiddenWord = view.findViewById(R.id.hiddenWord);
         wrongLetters = view.findViewById(R.id.wrongLetters);
-//        info = view.findViewById(R.id.information);
 
         // Hangman pictures
         hangmanPic = view.findViewById(R.id.hangman);
@@ -114,10 +118,36 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         playerName.setText("Hello " +player);
 
         // The clickable views
-//        ok.setOnClickListener(this);
-//        clear.setOnClickListener(this);
-//        newGame.setOnClickListener(this);
-//        backToMain.setOnClickListener(this);
+        a.setOnClickListener(this);
+        b.setOnClickListener(this);
+        c.setOnClickListener(this);
+        d.setOnClickListener(this);
+        e.setOnClickListener(this);
+        f.setOnClickListener(this);
+        g.setOnClickListener(this);
+        h.setOnClickListener(this);
+        i.setOnClickListener(this);
+        j.setOnClickListener(this);
+        k.setOnClickListener(this);
+        l.setOnClickListener(this);
+        m.setOnClickListener(this);
+        n.setOnClickListener(this);
+        o.setOnClickListener(this);
+        p.setOnClickListener(this);
+        q.setOnClickListener(this);
+        r.setOnClickListener(this);
+        s.setOnClickListener(this);
+        t.setOnClickListener(this);
+        u.setOnClickListener(this);
+        v.setOnClickListener(this);
+        w.setOnClickListener(this);
+        x.setOnClickListener(this);
+        y.setOnClickListener(this);
+        z.setOnClickListener(this);
+        ae.setOnClickListener(this);
+        oe.setOnClickListener(this);
+        aa.setOnClickListener(this);
+        backToMain.setOnClickListener(this);
 
         // Prints in the terminal what the hidden word is and other information
         galgelogik.logStatus();
@@ -185,36 +215,36 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
         int win;
         Bundle bundle, bundle1;
-        String letter = input.getText().toString();
-        input.setError(null);
+//        String letter = input.getText().toString();
+//        input.setError(null);
 
 // -----Input control-------------------------------------------------------------------------------
 
-        if (choices == ok && letter.length() != 1){
-            input.setError("Your input must contain exactly 1 letter.");
-            Toast.makeText(getActivity(), "Input a letter.", Toast.LENGTH_LONG).show();
-            return;
-
-        }else if (choices == ok && (letter.matches("^[a-zA-Z]'$"))){
-            input.setError("Your input MUST be a letter.");
-            Toast.makeText(getActivity(),"Input a letter.", Toast.LENGTH_LONG).show();
-            return;
-
-        }
+//        if (choices == ok && letter.length() != 1){
+//            input.setError("Your input must contain exactly 1 letter.");
+//            Toast.makeText(getActivity(), "Input a letter.", Toast.LENGTH_LONG).show();
+//            return;
+//
+//        }else if (choices == ok && (letter.matches("^[a-zA-Z]'$"))){
+//            input.setError("Your input MUST be a letter.");
+//            Toast.makeText(getActivity(),"Input a letter.", Toast.LENGTH_LONG).show();
+//            return;
+//
+//        }
 
 // -----When you want to press a letter and press ok------------------------------------------------
 
         try{
-            if (choices == ok) {
+            if (choices == a) {
 
-                galgelogik.gætBogstav(letter);
-
-                // Increment the tries for each press
-                tries += 1;
-
-                // Various stuff
-                input.setText("");
-                info.setText("You got " +galgelogik.getAntalForkerteBogstaver()+ " wrong letters.");
+//                galgelogik.gætBogstav(letter);
+//
+//                // Increment the tries for each press
+//                tries += 1;
+//
+//                // Various stuff
+//                input.setText("");
+//                info.setText("You got " +galgelogik.getAntalForkerteBogstaver()+ " wrong letters.");
                 wrongLetters.setText("" +galgelogik.getBrugteBogstaver());
                 hiddenWord.setText(galgelogik.getSynligtOrd());
 
@@ -226,7 +256,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is lost-----------------------------------------------------------------
 
                 if (galgelogik.erSpilletVundet()) {
-                    info.setText(R.string.winsGame);
                     winScreen_frag = new WinScreen_frag();
                     gson = new Gson();
                     win = 1;
@@ -280,7 +309,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 // -------------If the game is won------------------------------------------------------------------
 
                 if (galgelogik.erSpilletTabt()) {
-                    info.setText(R.string.loosesGame);
                     looseScreen_frag = new LooseScreen_frag();
 
                     bundle1 = new Bundle();
@@ -293,12 +321,6 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
                     fragmentTransaction.commit();
                     GamePage_frag.galgelogik.nulstil();
                 }
-            }
-
-// ---------Clear the EditText----------------------------------------------------------------------
-
-            if(choices == clear ){
-                input.setText("");
             }
 
 // ---------Back to main menu-----------------------------------------------------------------------
@@ -314,14 +336,14 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
 // ---------Start a new game------------------------------------------------------------------------
 
-            if(choices == newGame){
-                inputName_frag = new InputName_frag();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragContainer,inputName_frag);
-                fragmentTransaction.commit();
-                GamePage_frag.galgelogik.nulstil();
-            }
+//            if(choices == newGame){
+//                inputName_frag = new InputName_frag();
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragContainer,inputName_frag);
+//                fragmentTransaction.commit();
+//                GamePage_frag.galgelogik.nulstil();
+//            }
 
         }catch(Exception e){
             Toast.makeText(getActivity(),"Some error has ocurred: "+e.getMessage(),Toast.LENGTH_LONG).show();
