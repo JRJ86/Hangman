@@ -1,9 +1,7 @@
 package dk.riis.jacob.hangman.fragment_controllers;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -76,37 +74,37 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         System.out.println("Number of wrong letters: "+count);
 
         // Buttons
-        ok = view.findViewById(R.id.confirmLetter);
-        clear = view.findViewById(R.id.clearText);
-        newGame = view.findViewById(R.id.newGame);
-        backToMain = view.findViewById(R.id.backToMain);
+//        ok = view.findViewById(R.id.confirmLetter);
+//        clear = view.findViewById(R.id.clearText);
+//        newGame = view.findViewById(R.id.newGame);
+//        backToMain = view.findViewById(R.id.backToMain);
 
         // Bar to input letters
-        input = view.findViewById(R.id.inputLetter);
-        input.getBackground()
-                .mutate()
-                .setColorFilter(getResources().getColor(R.color.inputNameBackground),
-                        PorterDuff.Mode.SRC_ATOP);
-        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            /**
-             * This function removes the keyboard when the EditText no longer has focus
-             * @param v        The view
-             * @param hasFocus If the view has focus
-             */
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
-                    InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-        });
+//        input = view.findViewById(R.id.inputLetter);
+//        input.getBackground()
+//                .mutate()
+//                .setColorFilter(getResources().getColor(R.color.inputNameBackground),
+//                        PorterDuff.Mode.SRC_ATOP);
+//        input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            /**
+//             * This function removes the keyboard when the EditText no longer has focus
+//             * @param v        The view
+//             * @param hasFocus If the view has focus
+//             */
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus){
+//                    InputMethodManager inputMethodManager =(InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+//                }
+//            }
+//        });
 
         // The hidden word + information
         hiddenWord = view.findViewById(R.id.hiddenWord);
         wrongLetters = view.findViewById(R.id.wrongLetters);
-        info = view.findViewById(R.id.information);
+//        info = view.findViewById(R.id.information);
 
         // Hangman pictures
         hangmanPic = view.findViewById(R.id.hangman);
@@ -116,10 +114,10 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         playerName.setText("Hello " +player);
 
         // The clickable views
-        ok.setOnClickListener(this);
-        clear.setOnClickListener(this);
-        newGame.setOnClickListener(this);
-        backToMain.setOnClickListener(this);
+//        ok.setOnClickListener(this);
+//        clear.setOnClickListener(this);
+//        newGame.setOnClickListener(this);
+//        backToMain.setOnClickListener(this);
 
         // Prints in the terminal what the hidden word is and other information
         galgelogik.logStatus();
