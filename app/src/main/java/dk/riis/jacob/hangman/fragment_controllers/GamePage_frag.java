@@ -2,6 +2,7 @@ package dk.riis.jacob.hangman.fragment_controllers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -106,16 +107,15 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
         // Buttons
         backToMain = view.findViewById(R.id.backToMainFromGame);
 
-        // The hidden word + information
+        // The hidden word
         hiddenWord = view.findViewById(R.id.hiddenWord);
-        wrongLetters = view.findViewById(R.id.wrongLetters);
 
         // Hangman pictures
         hangmanPic = view.findViewById(R.id.hangman);
 
         // The players name
         TextView playerName = view.findViewById(R.id.playerName);
-        playerName.setText("Hello " +player);
+        playerName.setText(player+" is playing.");
 
         // The clickable views
         a.setOnClickListener(this);
@@ -201,153 +201,249 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View choices) {
 
+        try {
+            switch (choices.getId()){
+
+                case R.id.aBtn:
+                    pressOfButton(a);
+                    break;
+                case R.id.bBtn:
+                    pressOfButton(b);
+                    break;
+                case R.id.cBtn:
+                    pressOfButton(c);
+                    break;
+                case R.id.dBtn:
+                    pressOfButton(d);
+                    break;
+                case R.id.eBtn:
+                    pressOfButton(e);
+                    break;
+                case R.id.fBtn:
+                    pressOfButton(f);
+                    break;
+                case R.id.gBtn:
+                    pressOfButton(g);
+                    break;
+                case R.id.hBtn:
+                    pressOfButton(h);
+                    break;
+                case R.id.iBtn:
+                    pressOfButton(i);
+                    break;
+                case R.id.jBtn:
+                    pressOfButton(j);
+                    break;
+                case R.id.kBtn:
+                    pressOfButton(k);
+                    break;
+                case R.id.lBtn:
+                    pressOfButton(l);
+                    break;
+                case R.id.mBtn:
+                    pressOfButton(m);
+                    break;
+                case R.id.nBtn:
+                    pressOfButton(n);
+                    break;
+                case R.id.oBtn:
+                    pressOfButton(o);
+                    break;
+                case R.id.pBtn:
+                    pressOfButton(p);
+                    break;
+                case R.id.qBtn:
+                    pressOfButton(q);
+                    break;
+                case R.id.rBtn:
+                    pressOfButton(r);
+                    break;
+                case R.id.sBtn:
+                    pressOfButton(s);
+                    break;
+                case R.id.tBtn:
+                    pressOfButton(t);
+                    break;
+                case R.id.uBtn:
+                    pressOfButton(u);
+                    break;
+                case R.id.vBtn:
+                    pressOfButton(v);
+                    break;
+                case R.id.wBtn:
+                    pressOfButton(w);
+                    break;
+                case R.id.xBtn:
+                    pressOfButton(x);
+                    break;
+                case R.id.yBtn:
+                    pressOfButton(y);
+                    break;
+                case R.id.zBtn:
+                    pressOfButton(z);
+                    break;
+                case R.id.aeBtn:
+                    pressOfButton(ae);
+                    break;
+                case R.id.oeBtn:
+                    pressOfButton(oe);
+                    break;
+                case R.id.aaBtn:
+                    pressOfButton(aa);
+                    break;
+                case R.id.backToMainFromGame:
+
+                    WelcomePage_frag welcomePage_frag = new WelcomePage_frag();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragContainer, welcomePage_frag);
+                    fragmentTransaction.commit();
+                    GamePage_frag.galgelogik.nulstil();
+                    break;
+
+                default:
+                    Toast.makeText(getActivity(),"You pressed something not implemented!",Toast.LENGTH_LONG).show();
+            }
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"Some error has ocurred: "+e.getMessage(),Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * This function gets called everytime a button is clicked on the custom keyboard.
+     *
+     * The function will guess a letter in the hidden word, and will change the buttons
+     * on the keyboard depending if the guess was right or wrong.
+     *
+     * If the guessed letter completes the word, the game is won, and the fragment will change to
+     * the win screen. If the guess was wrong and no more tries are available, then the fragment will
+     * change to the looser screen.
+     *
+     * @param button the button on the keyboard that is pressed
+     */
+    private void pressOfButton(Button button){
+
+        // this boolean will help decide which color the button should have after a click
+        boolean buttonColor = false;
+
+//------Variables to change fragment, depending on win or loose-------------------------------------
+
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;
-
-// -----The objects for the change fragment functions-----------------------------------------------
-
         WinScreen_frag winScreen_frag;
         LooseScreen_frag looseScreen_frag;
-        InputName_frag inputName_frag;
-        WelcomePage_frag welcomePage_frag;
 
-// -----Various variables---------------------------------------------------------------------------
+//------Variables to send data to win or loose screen-----------------------------------------------
 
         int win;
         Bundle bundle, bundle1;
-//        String letter = input.getText().toString();
-//        input.setError(null);
 
-// -----Input control-------------------------------------------------------------------------------
+//------Guess the letter on the button--------------------------------------------------------------
 
-//        if (choices == ok && letter.length() != 1){
-//            input.setError("Your input must contain exactly 1 letter.");
-//            Toast.makeText(getActivity(), "Input a letter.", Toast.LENGTH_LONG).show();
-//            return;
-//
-//        }else if (choices == ok && (letter.matches("^[a-zA-Z]'$"))){
-//            input.setError("Your input MUST be a letter.");
-//            Toast.makeText(getActivity(),"Input a letter.", Toast.LENGTH_LONG).show();
-//            return;
-//
-//        }
+        String letter = button.getText().toString();
+        System.out.println(letter);
 
-// -----When you want to press a letter and press ok------------------------------------------------
+        galgelogik.gætBogstav(letter);
 
-        try{
-            if (choices == a) {
+//------Increment the number of tries to win which each press---------------------------------------
 
-//                galgelogik.gætBogstav(letter);
-//
-//                // Increment the tries for each press
-//                tries += 1;
-//
-//                // Various stuff
-//                input.setText("");
-//                info.setText("You got " +galgelogik.getAntalForkerteBogstaver()+ " wrong letters.");
-                wrongLetters.setText("" +galgelogik.getBrugteBogstaver());
-                hiddenWord.setText(galgelogik.getSynligtOrd());
+        tries += 1;
 
-                // Number of wrong choices
-                count = galgelogik.getAntalForkerteBogstaver();
-                System.out.println(count);
-                showHangmanPic(count);
+//------Update the hidden word and the hangman pic----------------------------------------------------
 
-// -------------If the game is lost-----------------------------------------------------------------
+        hiddenWord.setText(galgelogik.getSynligtOrd());
 
-                if (galgelogik.erSpilletVundet()) {
-                    winScreen_frag = new WinScreen_frag();
-                    gson = new Gson();
-                    win = 1;
-                    String winningPlayer = player;
+        count = galgelogik.getAntalForkerteBogstaver();
+        System.out.println(count);
+        showHangmanPic(count);
 
-// -----------------Load the highscore list from SharedPreferences----------------------------------
+//------Change the button color depending on right or wrong guess-----------------------------------
 
-                    loadFromPrefs();
+        char guessLetter = letter.charAt(0);
+        System.out.println(guessLetter);
+        String theWord = galgelogik.getOrdet();
 
-// -----------------Check if the list contains the player with the corresponding name---------------
+        for (int i = 0 ; i < theWord.length(); i++){
+            char c = theWord.charAt(i);
+            if (guessLetter == c){
+                buttonColor = true;
+            }
+        }
 
-                    for (Highscore highscore: savedHighscores){
-                        if (highscore.getName().equals(winningPlayer)){
-                            highscore.setName(winningPlayer);
-                            highscore.setScore(highscore.getScore() + 1);
-                            playerFound = true;
-                        }
-                    }
+        if (buttonColor){
+            button.setBackgroundColor(Color.GREEN);
+        }else {
+            button.setBackgroundColor(Color.RED);
+        }
 
-                    if (!playerFound){
-                        Highscore highscoreElement = new Highscore(winningPlayer,win);
-                        savedHighscores.add(highscoreElement);
-                    }
+//------If the game is won--------------------------------------------------------------------------
 
-                    Collections.sort(savedHighscores);
+        if (galgelogik.erSpilletVundet()) {
+            winScreen_frag = new WinScreen_frag();
+            gson = new Gson();
+            win = 1;
+            String winningPlayer = player;
 
-// -----------------Save the updated list to SharedPreferences--------------------------------------
+//----------Load the highscore list from SharedPreferences------------------------------------------
+            loadFromPrefs();
 
-                    saveToPrefs(savedHighscores);
-
-                    if (sharedPreferences.contains("highscoreList")){
-                        Toast.makeText(getActivity(),"Highscore added", Toast.LENGTH_LONG).show();
-                        printHighscoreList();
-                    }
-
-// -----------------Send data to win screen---------------------------------------------------------
-
-                    bundle = new Bundle();
-                    bundle.putInt("tries",tries);
-                    winScreen_frag.setArguments(bundle);
-
-// -----------------Go to win screen and nullify the galgelogik object------------------------------
-
-                    fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragContainer,winScreen_frag);
-                    fragmentTransaction.commit();
-                    GamePage_frag.galgelogik.nulstil();
-                }
-
-// -------------If the game is won------------------------------------------------------------------
-
-                if (galgelogik.erSpilletTabt()) {
-                    looseScreen_frag = new LooseScreen_frag();
-
-                    bundle1 = new Bundle();
-                    bundle1.putString("word", word);
-                    looseScreen_frag.setArguments(bundle1);
-
-                    fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragContainer,looseScreen_frag);
-                    fragmentTransaction.commit();
-                    GamePage_frag.galgelogik.nulstil();
+            for (Highscore highscore: savedHighscores){
+                if (highscore.getName().equals(winningPlayer)){
+                    highscore.setName(winningPlayer);
+                    highscore.setScore(highscore.getScore() + 1);
+                    playerFound = true;
                 }
             }
 
-// ---------Back to main menu-----------------------------------------------------------------------
-
-            if(choices == backToMain ){
-                welcomePage_frag = new WelcomePage_frag();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragContainer, welcomePage_frag);
-                fragmentTransaction.commit();
-                GamePage_frag.galgelogik.nulstil();
+            if (!playerFound){
+                Highscore highscoreElement = new Highscore(winningPlayer,win);
+                savedHighscores.add(highscoreElement);
             }
 
-// ---------Start a new game------------------------------------------------------------------------
+            Collections.sort(savedHighscores);
 
-//            if(choices == newGame){
-//                inputName_frag = new InputName_frag();
-//                fragmentManager = getActivity().getSupportFragmentManager();
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragContainer,inputName_frag);
-//                fragmentTransaction.commit();
-//                GamePage_frag.galgelogik.nulstil();
-//            }
+//----------Save the updated list to SharedPreferences----------------------------------------------
 
-        }catch(Exception e){
-            Toast.makeText(getActivity(),"Some error has ocurred: "+e.getMessage(),Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+            saveToPrefs(savedHighscores);
+
+            if (sharedPreferences.contains("highscoreList")){
+                Toast.makeText(getActivity(),"Highscore added", Toast.LENGTH_LONG).show();
+                printHighscoreList();
+            }
+
+//----------Send data to win screen-----------------------------------------------------------------
+
+            bundle = new Bundle();
+            bundle.putInt("tries",tries);
+            winScreen_frag.setArguments(bundle);
+
+//----------Go to win screen and nullify the galgelogik object--------------------------------------
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragContainer,winScreen_frag);
+            fragmentTransaction.commit();
+            GamePage_frag.galgelogik.nulstil();
+        }
+
+//------If the game is lost-------------------------------------------------------------------------
+
+        if (galgelogik.erSpilletTabt()) {
+            looseScreen_frag = new LooseScreen_frag();
+
+            bundle1 = new Bundle();
+            bundle1.putString("word", word);
+            looseScreen_frag.setArguments(bundle1);
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragContainer,looseScreen_frag);
+            fragmentTransaction.commit();
+            GamePage_frag.galgelogik.nulstil();
+
         }
     }
 
@@ -475,3 +571,4 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
 
 }
+
