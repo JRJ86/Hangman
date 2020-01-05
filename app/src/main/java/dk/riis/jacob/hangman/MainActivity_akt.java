@@ -93,7 +93,7 @@ public class MainActivity_akt extends AppCompatActivity {
                 if (itemid == R.id.nav_home) {
                     changeFragFromMenu(welcomePage_frag);
 
-                }else if (itemid == R.id.nav_help){
+                } else if (itemid == R.id.nav_help){
                     changeFragFromMenuBackstack(helpPage_frag);
 
                 } else if (itemid == R.id.nav_highscore) {
