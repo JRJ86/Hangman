@@ -14,12 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.luolc.emojirain.EmojiRainLayout;
+
 import dk.riis.jacob.hangman.R;
 
 /**
  * When you win a game this fragment will show, and you will se how many tries you used to win
  */
 public class WinScreen_frag extends Fragment implements View.OnClickListener {
+
+    private EmojiRainLayout emojiRainLayout;
 
     private Button yes, no;
     private static final String TAG = "WinScreen";
@@ -45,6 +49,17 @@ public class WinScreen_frag extends Fragment implements View.OnClickListener {
 
         numberOfTries = view.findViewById(R.id.numberOfTries);
         numberOfTries.setText("You used "+tries+" tries to achieve victory.");
+
+        emojiRainLayout = view.findViewById(R.id.rain2);
+        emojiRainLayout.addEmoji(R.drawable.fireworks);
+        emojiRainLayout.addEmoji(R.drawable.truthorn);
+        emojiRainLayout.addEmoji(R.drawable.smiley);
+
+        emojiRainLayout.setPer(10);             //
+        emojiRainLayout.setDuration(7200);      //
+        emojiRainLayout.setDropDuration(2400);  //
+        emojiRainLayout.setDropFrequency(500);  //
+        emojiRainLayout.startDropping();        //
 
         return view;
     }
