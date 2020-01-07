@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/cardview_compat_inset_shadow"
             android:background="@color/highscoreFragTextBack"
-            android:fontFamily="casual"
+            android:fontFamily="serif-monospace"
             android:text="@string/highscoreHeadlineXML"
             android:textAlignment="center"
             android:textColor="@color/textColor1"
@@ -35,10 +35,10 @@
                 android:layout_width="281dp"
                 android:layout_height="match_parent"
                 android:background="@color/highscoreFragTextBack"
-                android:fontFamily="casual"
+                android:fontFamily="serif-monospace"
                 android:text="@string/playerHighscoreXML"
                 android:textColor="@color/textColor1"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,10 +46,10 @@
                 android:layout_width="284dp"
                 android:layout_height="match_parent"
                 android:background="@color/highscoreFragTextBack"
-                android:fontFamily="casual"
+                android:fontFamily="serif-monospace"
                 android:text="@string/winsHighscoreXML"
                 android:textColor="@color/textColor1"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

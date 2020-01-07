@@ -115,7 +115,7 @@ public class GamePage_frag extends Fragment implements View.OnClickListener {
 
         // The players name
         TextView playerName = view.findViewById(R.id.playerName);
-        playerName.setText(player+" is playing.");
+        playerName.setText(player);
 
         // The clickable views
         a.setOnClickListener(this);

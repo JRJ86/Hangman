@@ -13,9 +13,9 @@
 
         <TextView
             android:id="@+id/aboutText"
-            android:layout_width="363dp"
-            android:layout_height="324dp"
-            android:fontFamily="cursive"
+            android:layout_width="387dp"
+            android:layout_height="455dp"
+            android:fontFamily="serif-monospace"
             android:text="@string/aboutText"
             android:textColor="@color/textColor2"
             android:textSize="25sp"
@@ -28,20 +28,20 @@
 
         <Button
             android:id="@+id/backFromAbout"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/aboutBackButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:textSize="30sp"
             android:fontFamily="casual"
+            android:text="@string/aboutBackButton"
             android:textColor="@color/textColor2"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.819" />
+            app:layout_constraintVertical_bias="0.975" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

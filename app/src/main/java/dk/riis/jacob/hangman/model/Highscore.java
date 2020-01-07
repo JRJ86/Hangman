@@ -15,6 +15,11 @@ public class Highscore implements Comparable {
         this.score = score;
     }
 
+    public void changeFrag(int position){
+
+
+    }
+
     public String getName() {
         return name;
     }

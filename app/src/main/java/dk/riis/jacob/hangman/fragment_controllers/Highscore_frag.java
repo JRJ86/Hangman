@@ -31,7 +31,7 @@ public class Highscore_frag extends Fragment implements HighscoreAdapter.OnHighs
     private static final String TAG = "Highscore";
     ArrayList<Highscore> highscores;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private HighscoreAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     public Highscore_frag() {
@@ -69,11 +69,18 @@ public class Highscore_frag extends Fragment implements HighscoreAdapter.OnHighs
 //------Adding the list to the list view with the adapter-------------------------------------------
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this.getContext());
         adapter = new HighscoreAdapter(highscores, this,getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnHighscoreListener(new HighscoreAdapter.OnHighscoreListener() {
+            @Override
+            public void onHighscoreClick(int position) {
+
+            }
+        });
 //        ListView listView = view.findViewById(R.id.listView);
 //
 //        HighscoreListAdapter adapter = new HighscoreListAdapter(getActivity(), R.layout.higscore_element, highscores);

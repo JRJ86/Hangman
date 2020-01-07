@@ -49,7 +49,6 @@
             android:textColorHint="@color/textColor2"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:background="@drawable/border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
