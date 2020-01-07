@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.luolc.emojirain.EmojiRainLayout;
+
 import dk.riis.jacob.hangman.R;
 
 /**
@@ -21,6 +23,8 @@ import dk.riis.jacob.hangman.R;
  * The correct word is displayed, sent from the game page fragment
  */
 public class LooseScreen_frag extends Fragment implements View.OnClickListener {
+
+    private EmojiRainLayout emojiRainLayout;
 
     private Button yes, no;
     private static final String TAG = "LooseScreen";
@@ -47,6 +51,17 @@ public class LooseScreen_frag extends Fragment implements View.OnClickListener {
 
         rightWord = view.findViewById(R.id.rightWord);
         rightWord.setText("The right word was: "+word);
+
+        emojiRainLayout = view.findViewById(R.id.rain);
+        emojiRainLayout.addEmoji(R.drawable.skull);
+        emojiRainLayout.addEmoji(R.drawable.skull2);
+        emojiRainLayout.addEmoji(R.drawable.bones);
+
+        emojiRainLayout.setPer(10);             //
+        emojiRainLayout.setDuration(7200);      //
+        emojiRainLayout.setDropDuration(2400);  //
+        emojiRainLayout.setDropFrequency(500);  //
+        emojiRainLayout.startDropping();        //
 
         return view;
     }
